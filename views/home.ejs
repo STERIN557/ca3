@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      html,
+      body {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        background-color: black;
+
+        overflow: hidden;
+      }
+      #box {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        flex-direction: column;
+        height: 90%;
+        width: 40rem;
+
+        align-self: center;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+      .inner {
+        display: flex;
+        position: relative;
+
+        align-self: center;
+        height: 4rem;
+        width: 99%;
+        background-color: #fff;
+        margin: 1rem;
+        border-radius: 5px;
+        padding: 10px;
+        padding-left: 100px;
+        cursor: pointer;
+      }
+      p {
+        color: rgb(58, 60, 71);
+        font-size: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+
+        text-align: center;
+      }
+      #hd {
+        visibility: hidden;
+      }
+      #flt {
+        display: none;
+        position: fixed;
+        justify-content: center;
+        flex-direction: column;
+        height: 20rem;
+        width: 20rem;
+        background-color: rgb(183, 0, 255);
+        z-index: 33;
+        border-radius: 5px;
+      }
+
+      .idf {
+        display: flex;
+        position: relative;
+        align-self: center;
+        font-size: 20px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="flt"></div>
+    <div id="box"></div>
+    <script defer>
+      var data = <%-data %>;
+      var length = data.employee.length;
+      const dd = document.getElementById('box');
+      dd.innerHTML = '';
+      Object.values(data.employee).map((d)=>{
+        console.log(d.name, d.phone);
+
+
+
+
+
+
+      dd.innerHTML+=
+        `   <div class="inner">
+          <p>${d.name}</p>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <p>${d.phone}</p> <p id="hd">${JSON.stringify(d)}<p>
+        </div>`;
+
+
+      });
+      const information = document.querySelectorAll(".inner");
+      console.log(information.length);
+
+      for (let i =0;i<information.length;i++ ) {
+        information[i].addEventListener('click', function(event) {
+
+        var ssss = i;
+        console.log(data.employee[ssss].name);
+        const puttingbox = document.getElementById('flt');
+        puttingbox.style.display = "flex";
+        puttingbox.innerHTML = `  <div class="idf">Name: ${data.employee[ssss].name}</div>
+        <div class="idf">phone No: ${data.employee[ssss].phone}</div>
+        <div class="idf">email: ${data.employee[ssss].email}</div>
+        <div class="idf">DOB: ${data.employee[ssss].DOB}</div>`
+
+
+
+
+        })
+      };
+    </script>
+  </body>
+</html>
