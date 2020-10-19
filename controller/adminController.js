@@ -30,15 +30,15 @@ router.post("/", (req, res) => {
     var arrayOfObject = JSON.parse(data);
     console.log(arrayOfObject);
     arrayOfObject.employee.push(info);
-    // fs.writeFile(
-    //   "data/employee.json",
-    //   JSON.stringify(arrayOfObject),
-    //   "utf-8",
-    //   function (err) {
-    //     if (err) throw err;
-    //     console.log("Done!");
-    //   }
-    // );
+    fs.writeFile(
+      "data/employee.json",
+      JSON.stringify(arrayOfObject),
+      "utf-8",
+      function (err) {
+        if (err) throw err;
+        console.log("Done!");
+      }
+    );
   });
   fs.readFile("data/employee.json", (err, data) => {
     res.render("home", { data: data });
